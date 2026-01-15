@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Github</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img class="profile-avatar" id="avatar" alt="avatar">
+            <h1 class="profile-name" id="name"></h1>
+            <h2 class="profile-username" id="username"></h2>
+            <ul class="numbers">
+                <li class="numbers-item" id="repos">
+                    <h4>Repositórios</h4>
+                </li>
+                <li class="numbers-item" id="followers">
+                    <h4>Seguidores</h4>
+                </li>
+                <li class="numbers-item" id="following">
+                    <h4>Seguindo</h4>
+                </li>
+            </ul>
+            <a class="profile-link" id="link">Ver no Github</a>
+        </div>
+    </header>
+
+    <script src="jquery.js"></script>
+
+    <script>
+        $(function() {
+            try {
+                const endpoint = 'https://api.github.com/users/gustavohmdm';
+                $.ajax(endpoint).done(function(resposta) {
+                    const name = $('#name');
+                    const username = $('#username');
+                    const avatar = $('#avatar');
+                    const repos = $('#repos');
+                    const followers = $('#followers');
+                    const following = $('#following');
+                    const link = $('#link');
+                    $('#name').append(resposta.name);
+                    $('#username').append(resposta.login);
+                    $('#avatar').attr('src', resposta.avatar_url);
+                    $('#following').append(resposta.following);
+                    $('#followers').append(resposta.followers);
+                    $('#repos').append(resposta.public_repos);
+                    $('#link').attr('href', resposta.html_url);
+                });
+            } catch {
+                alert('A URL está incorreta')
+            };
+        });
+    </script>
+
+</body>
+</html>
