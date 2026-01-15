@@ -32,27 +32,23 @@
 
     <script>
         $(function() {
-            try {
-                const endpoint = 'https://api.github.com/users/gustavohmdm';
-                $.ajax(endpoint).done(function(resposta) {
-                    const name = $('#name');
-                    const username = $('#username');
-                    const avatar = $('#avatar');
-                    const repos = $('#repos');
-                    const followers = $('#followers');
-                    const following = $('#following');
-                    const link = $('#link');
-                    $('#name').append(resposta.name);
-                    $('#username').append(resposta.login);
-                    $('#avatar').attr('src', resposta.avatar_url);
-                    $('#following').append(resposta.following);
-                    $('#followers').append(resposta.followers);
-                    $('#repos').append(resposta.public_repos);
-                    $('#link').attr('href', resposta.html_url);
-                });
-            } catch {
-                alert('A URL está incorreta')
-            };
+            const endpoint = 'https://api.github.com/users/gustavohmdm';
+            $.ajax(endpoint).done(function(resposta) {
+                const name = $('#name');
+                const username = $('#username');
+                const avatar = $('#avatar');
+                const repos = $('#repos');
+                const followers = $('#followers');
+                const following = $('#following');
+                const link = $('#link');
+                $('#name').append(resposta.name);
+                $('#username').append(resposta.login);
+                $('#avatar').attr('src', resposta.avatar_url);
+                $('#following').append(resposta.following);
+                $('#followers').append(resposta.followers);
+                $('#repos').append(resposta.public_repos);
+                $('#link').attr('href', resposta.html_url);
+            });
         });
     </script>
 
